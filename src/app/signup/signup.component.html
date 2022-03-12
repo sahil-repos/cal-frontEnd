@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Sign Up!</h1>
+                    <h6>Please enter your details</h6>
+
+                </div>
+                <form>
+                    <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input formControlName="name" type="text" class="form-control" id="name"  aria-describedby="nameHelp">
+                            <span class="text-danger" *ngIf="signupForm.controls['name'].dirty && signupForm.hasError('required','name')">*Name is required</span>
+                          </div>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Email address</label>
+                          <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                          <span class="text-danger" *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">*Email is required</span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="password" class="form-label">Password</label>
+                          <input formControlName="password" type="password" class="form-control" id="password">
+                          <span class="text-danger" *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">*Password is required</span>
+                        </div>
+                        
+                        <button type="submit" [disabled]="!signupForm.valid" class="btn btn-primary">Sign Up</button>
+                      </form>
+                      <a routerLink="/login">Already signed up? Click here to login !</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h1 style="color:white">CaloMeter</h1>
+        <div class="d-flex">
+            <button type="button" (click)="onAddMealClick()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success"> Add a meal</button>
+
+        </div>
+    </div>
+</nav>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Calories</th>
+            <th scope="col">Date created</th>
+            <th scope="col">Action</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let row of mealData">
+            <td>{{row.name}}</td>
+            <td>{{row.calories}}</td>
+            <td>{{row.created_at}}</td>
+            <td>
+                <button type="button" (click)="onEdit(row)"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
+                <button  class="btn btn-danger mx-3">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<!-- Button trigger modal -->
+
+  <!-- Add user Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="mealformValue">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="nameHelp">
+                  </div>
+                <div class="mb-3">
+                  <label for="exampleInputCalory" class="form-label">Calories</label>
+                  <input type="Number" formControlName="email"class="form-control" id="exampleInputCalory" aria-describedby="caloriesHelp">
+                </div>
+                <div class="mb-3" *ngIf="showAddButton">
+                  <label for="exampleInputDate" class="form-label">Date</label>
+                  <input type="date" formControlName="created_at" class="form-control" id="exampleInputDate">
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="close"class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" *ngIf="showAddButton"  class="btn btn-primary">Add</button>
+          <button type="button" *ngIf="showUpdateButton" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
